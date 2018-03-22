@@ -25,7 +25,6 @@ public:
     friend nr_complex operator-(const nr_complex &,const nr_complex &);
     friend nr_complex operator*(const nr_complex &,const nr_complex &);
     friend nr_complex operator/(const nr_complex &,const nr_complex &);
-    friend nr_complex impartire(const nr_complex &,const nr_complex &);
     bool operator==(const nr_complex &c)const
     {
         return (Re-c.Re==0)&&(Im-c.Im==0);

@@ -33,7 +33,7 @@ public:
     {
         if(&a!=this)
        {
-           delete[]v;
+           if(dim!=0)delete[]v;
            dim=a.dim;
            v=new nr_complex[a.dim];
            for(int i=0;i<a.dim;++i)v[i]=a.v[i];
@@ -60,7 +60,7 @@ public:
     }
 
     friend std::istream &operator>>(std::istream &,vector_nr_complex&);
-    friend std::ostream &operator<<(std::ostream &,vector_nr_complex&);
+    friend std::ostream &operator<<(std::ostream &,const vector_nr_complex&);
     nr_complex &operator[](const int poz)
     {
         if(poz>=0&&poz<dim)
@@ -92,6 +92,7 @@ public:
         return 1;
     }
     friend nr_complex operator*(const vector_nr_complex &,const vector_nr_complex &);
+    vector_nr_complex operator-(const vector_nr_complex &);
 };
 nr_complex operator*(const vector_nr_complex &a,const vector_nr_complex &b)
 {
@@ -111,12 +112,26 @@ std::istream &operator>>(std::istream &in,vector_nr_complex &a)
    for(i=0;i<a.dim;++i)in>>a.v[i];
    return in;
 }
-std::ostream &operator<<(std::ostream &out,vector_nr_complex &a)
+std::ostream &operator<<(std::ostream &out,const vector_nr_complex &a)
 {
     int i;
     for(i=0;i<a.dim;++i)out<<a.v[i]<<" ";
     return out;
 }
-
-
+vector_nr_complex vector_nr_complex::operator-(const vector_nr_complex &a)
+{
+    int i,k=0;
+    for(i=0;i<dim;++i)
+        if(v[i]!=a.v[i])break;
+    vector_nr_complex b;
+    b.dim=dim-i;
+    if(dim-i<=0)throw(dim);
+    b.v=new nr_complex[dim-i];
+    while(i<dim)
+    {
+        b.v[k]=v[i];
+        ++k;++i;
+    }
+    return b;
+}
 #endif // VECTOR_NR_COMPLEX_H_INCLUDED

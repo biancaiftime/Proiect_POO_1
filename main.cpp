@@ -8,7 +8,7 @@ int main()
     cin>>n;
     a=new vector_nr_complex[n];
     for(i=0;i<n;++i)cin>>a[i];
-    cout<<"Vectorii cititi sunt:\n";
+    /*cout<<"Vectorii cititi sunt:\n";
     for(i=0;i<n;++i)cout<<a[i]<<"\n";
     sort(a,a+n);
     cout<<"Vectorii dupa sortare sunt:\n";
@@ -18,6 +18,7 @@ int main()
     {
         a[i].sortare();
         cout<<a[i]<<"\n";
-    }
+    }*/
+    cout<<a[0]-a[1];
     return 0;
 }
